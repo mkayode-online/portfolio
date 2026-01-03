@@ -228,8 +228,14 @@
             </div>
             <div class="animate-slideInRight relative">
                 <div class="relative z-10 animate-float">
-                    <div class="w-full h-96 gradient-bg rounded-3xl shadow-2xl flex items-center justify-center">
-                        <div class="text-white text-8xl font-bold">KA</div>
+                    <div class="w-full aspect-square max-w-md mx-auto relative">
+                        <!-- Profile Image Container -->
+                        <div class="absolute inset-0 gradient-bg rounded-full blur-2xl opacity-30"></div>
+                        <img src="https://i.imgur.com/YourImageID.jpg" alt="Kayode Ajibola - Professional Portrait" class="relative z-10 w-full h-full object-cover rounded-full shadow-2xl border-8 border-white" style="object-position: center top;">
+                        <!-- Fallback if image doesn't load -->
+                        <div class="absolute inset-0 gradient-bg rounded-full flex items-center justify-center text-white text-8xl font-bold" style="z-index: 5;">
+                            <span id="fallback-text">KA</span>
+                        </div>
                     </div>
                 </div>
                 <div class="absolute top-10 right-10 w-32 h-32 bg-orange-500 rounded-full opacity-20 animate-float" style="animation-delay: 0.5s;"></div>
@@ -318,7 +324,7 @@
                             <circle id="skill1" cx="75" cy="75" r="65" stroke="#3d83fc" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="40.84"></circle>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-2xl font-bold gradient-text">80%</span>
+                            <span class="text-2xl font-bold gradient-text">90%</span>
                         </div>
                     </div>
                     <h3 class="font-semibold text-center">Adobe Illustrator</h3>
@@ -332,7 +338,7 @@
                             <circle id="skill2" cx="75" cy="75" r="65" stroke="#FF6B35" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="61.26"></circle>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-2xl font-bold gradient-text">90%</span>
+                            <span class="text-2xl font-bold gradient-text">85%</span>
                         </div>
                     </div>
                     <h3 class="font-semibold text-center">WordPress</h3>
@@ -346,7 +352,7 @@
                             <circle id="skill3" cx="75" cy="75" r="65" stroke="#3d83fc" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="40.84"></circle>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-2xl font-bold gradient-text">80%</span>
+                            <span class="text-2xl font-bold gradient-text">90%</span>
                         </div>
                     </div>
                     <h3 class="font-semibold text-center">HTML/CSS/JS</h3>
@@ -360,7 +366,7 @@
                             <circle id="skill4" cx="75" cy="75" r="65" stroke="#FF6B35" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="81.68"></circle>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-2xl font-bold gradient-text">90%</span>
+                            <span class="text-2xl font-bold gradient-text">80%</span>
                         </div>
                     </div>
                     <h3 class="font-semibold text-center">Canva</h3>
@@ -402,7 +408,7 @@
                             <circle id="skill7" cx="75" cy="75" r="65" stroke="#3d83fc" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="61.26"></circle>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-2xl font-bold gradient-text">80%</span>
+                            <span class="text-2xl font-bold gradient-text">85%</span>
                         </div>
                     </div>
                     <h3 class="font-semibold text-center">UI/UX Design</h3>
@@ -416,7 +422,7 @@
                             <circle id="skill8" cx="75" cy="75" r="65" stroke="#FF6B35" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="81.68"></circle>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-2xl font-bold gradient-text">85%</span>
+                            <span class="text-2xl font-bold gradient-text">80%</span>
                         </div>
                     </div>
                     <h3 class="font-semibold text-center">Brand Identity</h3>
@@ -679,28 +685,39 @@
                 </div>
 
                 <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <h3 id="form-status" class="hidden text-center text-green-600 font-semibold mb-4">Thanks! I'll get back to you soon.</h3>
-                    <div id="contact-form">
+                    <form action="https://formsubmit.co/mkayodeonline@gmail.com" method="POST">
+                        <!-- Honeypot -->
+                        <input type="text" name="_honey" style="display:none">
+                        
+                        <!-- Disable Captcha -->
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <!-- Success Page -->
+                        <input type="hidden" name="_next" value="https://mkayode-online.github.io/portfolio/#contact">
+                        
+                        <!-- Subject -->
+                        <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission!">
+                        
                         <div class="mb-6">
                             <label class="block text-sm font-semibold mb-2">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name">
+                            <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name">
                         </div>
                         <div class="mb-6">
                             <label class="block text-sm font-semibold mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
                         </div>
                         <div class="mb-6">
                             <label class="block text-sm font-semibold mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="How can I help?">
+                            <input type="text" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="How can I help?">
                         </div>
                         <div class="mb-6">
                             <label class="block text-sm font-semibold mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tell me about your project..."></textarea>
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tell me about your project..."></textarea>
                         </div>
-                        <button onclick="handleSubmit()" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:shadow-2xl transition transform hover:scale-105">
+                        <button type="submit" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:shadow-2xl transition transform hover:scale-105">
                             Send Message
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -726,7 +743,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4">Reach Out Now</h4>
+                    <h4 class="font-bold mb-4">Connect</h4>
                     <div class="flex gap-4">
                         <a href="https://www.linkedin.com/in/kayode-ajibola/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -753,6 +770,18 @@
     </footer>
 
     <script>
+        // Image loading handler
+        const profileImg = document.querySelector('img[alt*="Kayode Ajibola"]');
+        if (profileImg) {
+            profileImg.onload = function() {
+                document.getElementById('fallback-text').parentElement.style.display = 'none';
+            };
+            profileImg.onerror = function() {
+                // Keep fallback visible if image fails to load
+                this.style.display = 'none';
+            };
+        }
+
         // Particle effect
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
