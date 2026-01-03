@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kayode Ismail Ajibola - Professional Website & Graphics Designer specializing in Adobe Illustrator, WordPress, HTML/CSS/JS, and automation workflows.">
+    <meta name="keywords" content="Web Designer, Graphic Designer, WordPress, Adobe Illustrator, GoHighLevel, N8N, Automation, Kayode Ajibola">
+    <title>Kayode Ajibola | Web & Graphics Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3d83fc 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3d83fc 0%, #FF6B35 100%);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
+        .animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
+        
+        .skill-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .skill-circle svg {
+            transform: rotate(-90deg);
+        }
+        
+        .skill-circle circle {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .scroll-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dark-mode {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #1a1a1a;
+        }
+        
+        .dark-mode .text-gray-900 {
+            color: #ffffff;
+        }
+        
+        .dark-mode .text-gray-600 {
+            color: #a0a0a0;
+        }
+        
+        .dark-mode .border-gray-200 {
+            border-color: #333;
+        }
+        
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <div id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-sm dark-nav">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">KA</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="hover:text-blue-500 transition">Home</a>
+                <a href="#about" class="hover:text-blue-500 transition">About</a>
+                <a href="#skills" class="hover:text-blue-500 transition">Skills</a>
+                <a href="#projects" class="hover:text-blue-500 transition">Projects</a>
+                <a href="#testimonials" class="hover:text-blue-500 transition">Testimonials</a>
+                <a href="#contact" class="hover:text-blue-500 transition">Contact</a>
+                <button onclick="toggleDarkMode()" id="darkModeBtn" class="p-2 rounded-full hover:bg-gray-100 transition">
+                    <svg id="sunIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg id="moonIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-6 py-4 flex flex-col gap-4">
+                <a href="#home" onclick="toggleMobileMenu()" class="hover:text-blue-500 transition">Home</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="hover:text-blue-500 transition">About</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="hover:text-blue-500 transition">Skills</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="hover:text-blue-500 transition">Projects</a>
+                <a href="#testimonials" onclick="toggleMobileMenu()" class="hover:text-blue-500 transition">Testimonials</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-blue-500 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="animate-slideInLeft">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Hi, I'm <span class="gradient-text">Kayode Ajibola</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                    Creative Web & Graphics Designer
+                </p>
+                <p class="text-lg text-gray-600 mb-8">
+                    Transforming ideas into stunning digital experiences through design, code, and automation.
+                </p>
+                <div class="flex gap-4 mb-8">
+                    <a href="#contact" class="gradient-bg text-white px-8 py-3 rounded-full font-semibold hover:shadow-2xl transition transform hover:scale-105">
+                        Let's Talk
+                    </a>
+                    <a href="#projects" class="border-2 border-blue-500 text-blue-500 px-8 py-3 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition">
+                        View Work
+                    </a>
+                </div>
+                <div class="flex gap-6">
+                    <a href="https://www.linkedin.com/in/kayode-ajibola/" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.behance.net/mkayode_online" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.fiverr.com/morenikejiajibo" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.004 15.588a.995.995 0 1 0 .002-1.99.995.995 0 0 0-.002 1.99zm-.996-3.705h-.85c-.546 0-.84.41-.84 1.092v5.912h-1.61v-5.82c0-1.178-.542-1.907-1.564-1.907-.556 0-1.074.18-1.564.48v7.247h-1.61v-5.82c0-1.178-.542-1.907-1.564-1.907-.556 0-1.074.18-1.564.48v7.247h-1.61v-8.72h1.61v.792c.567-.535 1.234-.902 2.042-.902.768 0 1.436.353 1.826 1.018.603-.593 1.304-1.018 2.162-1.018 1.448 0 2.316.955 2.316 2.567l-.002 6.265h.828a1.003 1.003 0 0 0 1.002-1.006v-2.52c0-.556.452-1.006 1.006-1.006h.91a1.003 1.003 0 0 0 1.003-1.006v-.522c0-.556-.45-1.006-1.006-1.006h-.91a1.003 1.003 0 0 0-1.003 1.006v.522zM8.862 8.365c.558 0 1.01-.452 1.01-1.01s-.452-1.01-1.01-1.01-1.01.452-1.01 1.01.452 1.01 1.01 1.01zm6.066 3.518h-1.613v8.72h1.613v-8.72zm-8.208 0h-1.61v8.72h1.61v-8.72zm-1.818-6.232h-.844c-.554 0-1 .446-1 1v12.952c0 .554.446 1 1 1h.844v-14.952zm-2.902 8.232h-.844v5.72h.844v-5.72z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/mkayode-online" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.840 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.430.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="animate-slideInRight relative">
+                <div class="relative z-10 animate-float">
+                    <div class="w-full h-96 gradient-bg rounded-3xl shadow-2xl flex items-center justify-center">
+                        <div class="text-white text-8xl font-bold">KA</div>
+                    </div>
+                </div>
+                <div class="absolute top-10 right-10 w-32 h-32 bg-orange-500 rounded-full opacity-20 animate-float" style="animation-delay: 0.5s;"></div>
+                <div class="absolute bottom-10 left-10 w-24 h-24 bg-blue-500 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 scroll-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                About <span class="gradient-text">Me</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6">Kayode Ismail Ajibola</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        I'm a passionate Web and Graphics Designer with expertise in creating stunning visual experiences and functional digital solutions. With years of experience in design and development, I specialize in transforming complex ideas into simple, beautiful, and effective designs.
+                    </p>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        My journey in design started with a love for creativity and problem-solving. Today, I work with cutting-edge tools like Adobe Illustrator, WordPress, and modern web technologies to bring brands to life. I also specialize in automation workflows using platforms like GoHighLevel and N8N, helping businesses streamline their operations.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        When I'm not designing, you'll find me exploring new design trends, learning emerging technologies, and helping clients achieve their digital goals.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="text-3xl font-bold gradient-text">5+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="border-l-4 border-orange-500 pl-4">
+                            <div class="text-3xl font-bold gradient-text">100+</div>
+                            <div class="text-gray-600">Projects Completed</div>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="text-3xl font-bold gradient-text">50+</div>
+                            <div class="text-gray-600">Happy Clients</div>
+                        </div>
+                        <div class="border-l-4 border-orange-500 pl-4">
+                            <div class="text-3xl font-bold gradient-text">10+</div>
+                            <div class="text-gray-600">Tools Mastered</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+                            <div class="text-4xl mb-4">🎨</div>
+                            <h4 class="font-bold mb-2">Graphics Design</h4>
+                            <p class="text-sm text-gray-600">Creating stunning visual identities and brand materials</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition mt-8">
+                            <div class="text-4xl mb-4">💻</div>
+                            <h4 class="font-bold mb-2">Web Development</h4>
+                            <p class="text-sm text-gray-600">Building responsive and modern websites</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+                            <div class="text-4xl mb-4">⚡</div>
+                            <h4 class="font-bold mb-2">Automation</h4>
+                            <p class="text-sm text-gray-600">Streamlining workflows with smart automation</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition mt-8">
+                            <div class="text-4xl mb-4">🚀</div>
+                            <h4 class="font-bold mb-2">Branding</h4>
+                            <p class="text-sm text-gray-600">Crafting memorable brand experiences</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 scroll-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                My <span class="gradient-text">Skills</span>
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <!-- Skill 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill1" cx="75" cy="75" r="65" stroke="#3d83fc" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="40.84"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">90%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">Adobe Illustrator</h3>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill2" cx="75" cy="75" r="65" stroke="#FF6B35" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="61.26"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">85%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">WordPress</h3>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill3" cx="75" cy="75" r="65" stroke="#3d83fc" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="40.84"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">90%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">HTML/CSS/JS</h3>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill4" cx="75" cy="75" r="65" stroke="#FF6B35" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="81.68"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">80%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">Canva</h3>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill5" cx="75" cy="75" r="65" stroke="#3d83fc" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="102.1"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">75%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">GoHighLevel</h3>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill6" cx="75" cy="75" r="65" stroke="#FF6B35" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="122.52"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">70%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">N8N Workflows</h3>
+                </div>
+
+                <!-- Skill 7 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill7" cx="75" cy="75" r="65" stroke="#3d83fc" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="61.26"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">85%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">UI/UX Design</h3>
+                </div>
+
+                <!-- Skill 8 -->
+                <div class="flex flex-col items-center">
+                    <div class="skill-circle mb-4">
+                        <svg width="150" height="150">
+                            <circle cx="75" cy="75" r="65" stroke="#e5e7eb" stroke-width="10"></circle>
+                            <circle id="skill8" cx="75" cy="75" r="65" stroke="#FF6B35" stroke-width="10" stroke-dasharray="408.4" stroke-dashoffset="81.68"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">80%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-center">Brand Identity</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50 scroll-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                Featured <span class="gradient-text">Projects</span>
+            </h2>
+            <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+                A selection of my recent work showcasing web design, graphics, and automation projects
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 gradient-bg flex items-center justify-center text-white text-2xl font-bold">
+                        Brand Identity Design
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-500 font-semibold mb-2">Graphics Design</div>
+                        <h3 class="text-xl font-bold mb-3">Complete Brand Package</h3>
+                        <p class="text-gray-600 mb-4">Created a comprehensive brand identity including logo, color palette, and marketing materials for a tech startup.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Illustrator</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">Branding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-2xl font-bold">
+                        E-commerce Website
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-500 font-semibold mb-2">Web Development</div>
+                        <h3 class="text-xl font-bold mb-3">Online Store Platform</h3>
+                        <p class="text-gray-600 mb-4">Built a fully responsive e-commerce website with WordPress and custom CSS, featuring payment integration and inventory management.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">WordPress</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-white text-2xl font-bold">
+                        Automation Workflow
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-500 font-semibold mb-2">Automation</div>
+                        <h3 class="text-xl font-bold mb-3">Sales Pipeline System</h3>
+                        <p class="text-gray-600 mb-4">Designed and implemented automated sales pipeline using GoHighLevel, reducing manual work by 70%.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">GoHighLevel</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">N8N</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-white text-2xl font-bold">
+                        Marketing Materials
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-500 font-semibold mb-2">Graphics Design</div>
+                        <h3 class="text-xl font-bold mb-3">Social Media Campaign</h3>
+                        <p class="text-gray-600 mb-4">Designed a complete set of marketing materials including banners, social media posts, and promotional content.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Canva</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center text-white text-2xl font-bold">
+                        Landing Page Design
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-500 font-semibold mb-2">Web Development</div>
+                        <h3 class="text-xl font-bold mb-3">High-Converting Landing Page</h3>
+                        <p class="text-gray-600 mb-4">Created a modern, conversion-optimized landing page with custom animations and responsive design.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">HTML/CSS</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
+                        Task Tracker CRM
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-500 font-semibold mb-2">Web Development</div>
+                        <h3 class="text-xl font-bold mb-3">Custom CRM System</h3>
+                        <p class="text-gray-600 mb-4">Built a comprehensive task tracking CRM with user authentication, admin dashboard, and cloud storage.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">JavaScript</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://www.behance.net/mkayode_online" target="_blank" class="inline-flex items-center gap-2 gradient-bg text-white px-8 py-3 rounded-full font-semibold hover:shadow-2xl transition transform hover:scale-105">
+                    View All Projects on Behance
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 scroll-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                Client <span class="gradient-text">Testimonials</span>
+            </h2>
+            <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+                What my clients say about working with me
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            JS
+                        </div>
+                        <div>
+                            <h4 class="font-bold">John Smith</h4>
+                            <div class="text-yellow-500 flex gap-1">
+                                ★★★★★
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Kayode delivered an outstanding website for our business. His attention to detail and creative approach exceeded our expectations. Highly recommended!"</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            SD
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Davis</h4>
+                            <div class="text-yellow-500 flex gap-1">
+                                ★★★★★
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Professional, creative, and efficient. Kayode transformed our brand identity and gave us a modern look that perfectly represents our company."</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            MJ
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael Johnson</h4>
+                            <div class="text-yellow-500 flex gap-1">
+                                ★★★★★
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The automation workflow Kayode set up saved us countless hours. His technical expertise and problem-solving skills are top-notch!"</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://www.fiverr.com/morenikejiajibo" target="_blank" class="inline-flex items-center gap-2 border-2 border-blue-500 text-blue-500 px-8 py-3 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition">
+                    Read More Reviews on Fiverr
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 scroll-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                Get In <span class="gradient-text">Touch</span>
+            </h2>
+            <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+                Have a project in mind? Let's work together to bring your ideas to life!
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Let's Talk</h3>
+                    <p class="text-gray-600 mb-8">
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Email</h4>
+                                <p class="text-gray-600">mkayodeonline@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Location</h4>
+                                <p class="text-gray-600">Lagos, Nigeria</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Social Media</h4>
+                                <div class="flex gap-3 mt-2">
+                                    <a href="https://www.linkedin.com/in/kayode-ajibola/" target="_blank" class="text-gray-600 hover:text-blue-500 transition">LinkedIn</a>
+                                    <span>•</span>
+                                    <a href="https://www.behance.net/mkayode_online" target="_blank" class="text-gray-600 hover:text-blue-500 transition">Behance</a>
+                                    <span>•</span>
+                                    <a href="https://www.fiverr.com/morenikejiajibo" target="_blank" class="text-gray-600 hover:text-blue-500 transition">Fiverr</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 id="form-status" class="hidden text-center text-green-600 font-semibold mb-4">Thanks! I'll get back to you soon.</h3>
+                    <div id="contact-form">
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="How can I help?">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        <button onclick="handleSubmit()" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:shadow-2xl transition transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="text-3xl font-bold gradient-text mb-4">Kayode Ajibola</div>
+                    <p class="text-gray-400">
+                        Creating beautiful digital experiences through design, code, and automation.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-gray-400 hover:text-white transition">Home</a>
+                        <a href="#about" class="block text-gray-400 hover:text-white transition">About</a>
+                        <a href="#projects" class="block text-gray-400 hover:text-white transition">Projects</a>
+                        <a href="#contact" class="block text-gray-400 hover:text-white transition">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4">
+                        <a href="https://www.linkedin.com/in/kayode-ajibola/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.behance.net/mkayode_online" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/mkayode-online" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.840 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.430.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Kayode Ismail Ajibola. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Particle effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.background = Math.random() > 0.5 ? '#3d83fc' : '#FF6B35';
+                particle.style.opacity = Math.random() * 0.5;
+                particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Dark mode
+        let isDarkMode = false;
+
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('nav').classList.toggle('dark-mode');
+            document.getElementById('sunIcon').classList.toggle('hidden');
+            document.getElementById('moonIcon').classList.toggle('hidden');
+        }
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        // Contact form
+        function handleSubmit() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('form-status').classList.remove('hidden');
+
+            // In a real scenario, you'd send this to a backend
+            console.log({ name, email, subject, message });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initialize
+        createParticles();
+    </script>
+</body>
+</html>
