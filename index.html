@@ -888,15 +888,29 @@
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
                     }
-        // Handle URL hash to show thank you message after FormSubmit redirect
-window.addEventListener('DOMContentLoaded', function() {
-    // Check if URL has specific parameters from FormSubmit redirect
-    const urlParams = new URLSearchParams(window.location.search);
-    const hash = window.location.hash;
+        
+// Check if the page was just loaded after form submission
+window.addEventListener('load', function() {
+    // Check if we're at the contact section (redirected from FormSubmit)
+    if (window.location.hash === '#contact') {
+        // Check session storage to see if form was just submitted
+        if (sessionStorage.getItem('formSubmitted') === 'true') {
+            showThankYouMessage();
+            // Clear the flag
+            sessionStorage.removeItem('formSubmitted');
+        }
+    }
+});
+
+// Intercept form submission to set a flag
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
     
-    // If redirected back from FormSubmit, show thank you message
-    if (hash === '#contact' && document.referrer.includes('formsubmit')) {
-        showThankYouMessage();
+    if (contactForm) {
+        contactForm.addEventListener('submit', function() {
+            // Set flag in session storage before form submits
+            sessionStorage.setItem('formSubmitted', 'true');
+        });
     }
 });
 
@@ -906,25 +920,30 @@ function showThankYouMessage() {
     const thankYou = document.getElementById('thank-you-message');
     
     if (form && thankYou) {
-        form.classList.add('hidden');
+        form.style.display = 'none';
+        thankYou.style.display = 'block';
         thankYou.classList.remove('hidden');
         
-        // Scroll to contact section
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        // Scroll to contact section smoothly
+        setTimeout(function() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
     }
 }
-        
+
 // Reset form to send another message
 function resetForm() {
     const form = document.getElementById('contact-form');
     const thankYou = document.getElementById('thank-you-message');
     
     if (form && thankYou) {
+        form.style.display = 'block';
         form.classList.remove('hidden');
+        thankYou.style.display = 'none';
         thankYou.classList.add('hidden');
         form.reset();
     }
-                    }
+}
 
         // Initialize
         createParticles();
