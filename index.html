@@ -711,7 +711,7 @@
                         </div>
                         <div>
                             <h4 class="font-semibold mb-1">WhatsApp</h4>
-                            <a href="https://wa.me/2348072984739" target="_blank" class="text-gray-600 hover:text-gray-700 font-medium">Chat on WhatsApp</a>
+                            <a href="https://wa.me/2348072984739" target="_blank" class="text-green-600 hover:text-green-700 font-medium">Chat on WhatsApp</a>
                         </div>
                     </div>
                 </div>
@@ -740,15 +740,18 @@
                 </div>
 
                 <!-- Contact Form -->
-                <form id="contact-form" action="https://formsubmit.co/mkayodeonline@gmail.com" method="POST" onsubmit="return handleFormSubmit(event)">
+                <form id="contact-form" action="https://formsubmit.co/mkayodeonline@gmail.com" method="POST">
                     <!-- Honeypot -->
                     <input type="text" name="_honey" style="display:none">
                     
                     <!-- Disable Captcha -->
-                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_captcha" value="false">
                     
-                    <!-- Custom Thank You (we'll handle it ourselves) -->
-                    <input type="hidden" name="_template" value="table">
+                    <!-- After Submit Page -->
+                    <input type="hidden" name="_next" value="https://mkayode-online.github.io/portfolio/#contact">
+                    
+                    <!-- Subject -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio!">
                     
                     <div class="mb-6">
                         <label class="block text-sm font-semibold mb-2">Name</label>
@@ -774,6 +777,7 @@
         </div>
     </div>
 </section>
+
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
@@ -883,56 +887,45 @@
         // Mobile menu
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
-        }
+                    }
+        // Handle URL hash to show thank you message after FormSubmit redirect
+window.addEventListener('DOMContentLoaded', function() {
+    // Check if URL has specific parameters from FormSubmit redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    const hash = window.location.hash;
+    
+    // If redirected back from FormSubmit, show thank you message
+    if (hash === '#contact' && document.referrer.includes('formsubmit')) {
+        showThankYouMessage();
+    }
+});
 
-// Form submission handler
-function handleFormSubmit(event) {
-    event.preventDefault();
-    
+// Show thank you message
+function showThankYouMessage() {
     const form = document.getElementById('contact-form');
-    const formData = new FormData(form);
+    const thankYou = document.getElementById('thank-you-message');
     
-    // Submit to FormSubmit
-    fetch('https://formsubmit.co/mkayodeonline@gmail.com', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Hide form and show thank you message
-            form.classList.add('hidden');
-            document.getElementById('thank-you-message').classList.remove('hidden');
-            
-            // Reset form fields
-            form.reset();
-        } else {
-            alert('There was an error sending your message. Please try again or call +234 807 298 4739');
-        }
-    })
-    .catch(error => {
-        alert('There was an error sending your message. Please try again or call +234 807 298 4739');
-    });
-    
-    return false;
+    if (form && thankYou) {
+        form.classList.add('hidden');
+        thankYou.classList.remove('hidden');
+        
+        // Scroll to contact section
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // Reset form to send another message
 function resetForm() {
-    document.getElementById('contact-form').classList.remove('hidden');
-    document.getElementById('thank-you-message').classList.add('hidden');
-}
+    const form = document.getElementById('contact-form');
+    const thankYou = document.getElementById('thank-you-message');
+    
+    if (form && thankYou) {
+        form.classList.remove('hidden');
+        thankYou.classList.add('hidden');
+        form.reset();
+    }
+                    }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
             });
         });
 
