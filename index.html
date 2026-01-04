@@ -745,7 +745,7 @@
                     <input type="text" name="_honey" style="display:none">
                     
                     <!-- Disable Captcha -->
-                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_captcha" value="true">
                     
                     <!-- Custom Thank You (we'll handle it ourselves) -->
                     <input type="hidden" name="_template" value="table">
@@ -885,24 +885,45 @@
             document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
-        // Contact form
-        function handleSubmit() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            if (!name || !email || !subject || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-
-            document.getElementById('contact-form').classList.add('hidden');
-            document.getElementById('form-status').classList.remove('hidden');
-
-            // In a real scenario, you'd send this to a backend
-            console.log({ name, email, subject, message });
+// Form submission handler
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const form = document.getElementById('contact-form');
+    const formData = new FormData(form);
+    
+    // Submit to FormSubmit
+    fetch('https://formsubmit.co/mkayodeonline@gmail.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
         }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Hide form and show thank you message
+            form.classList.add('hidden');
+            document.getElementById('thank-you-message').classList.remove('hidden');
+            
+            // Reset form fields
+            form.reset();
+        } else {
+            alert('There was an error sending your message. Please try again or call +234 807 298 4739');
+        }
+    })
+    .catch(error => {
+        alert('There was an error sending your message. Please try again or call +234 807 298 4739');
+    });
+    
+    return false;
+}
+
+// Reset form to send another message
+function resetForm() {
+    document.getElementById('contact-form').classList.remove('hidden');
+    document.getElementById('thank-you-message').classList.add('hidden');
+}
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
