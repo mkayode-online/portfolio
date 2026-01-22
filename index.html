@@ -284,6 +284,13 @@
             fill: white;
         }
         
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #f3f4f6;
+        }
+        
     </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -588,9 +595,70 @@
             A selection of my recent work showcasing web design, graphics, and automation projects
         </p>
         
-        <!-- Dynamic Behance Projects Container -->
-        <div id="behance-projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- JavaScript will populate this with your three projects -->
+        <!-- Projects Container with static content -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1: GoHighLevel Webinar Funnel -->
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                <div class="project-image flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="GoHighLevel Webinar Funnel" 
+                         class="w-full h-full object-cover"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/3d83fc/ffffff?text=GoHighLevel+Funnel'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">GoHighLevel Webinar Funnel</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Complete webinar funnel built on GoHighLevel platform with automated sequences for lead generation and conversion.</p>
+                    <a href="https://www.behance.net/gallery/230623757/GOHIGHLEVEL-WEBINAR-FUNNEL" target="_blank" 
+                       class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-700 font-medium text-sm">
+                        View Project
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Restaurant Website Elementor -->
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                <div class="project-image flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Restaurant Website Elementor" 
+                         class="w-full h-full object-cover"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/FF6B35/ffffff?text=Restaurant+Website'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Restaurant Website Elementor</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Modern restaurant website design built with WordPress and Elementor, featuring online ordering and reservation system.</p>
+                    <a href="https://www.behance.net/gallery/227295199/RESTAURANT-WEBSITE-ELEMENTOR" target="_blank" 
+                       class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-700 font-medium text-sm">
+                        View Project
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3: Poop Cooper Cleaning Services -->
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                <div class="project-image flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Poop Cooper Cleaning Services" 
+                         class="w-full h-full object-cover"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/10b981/ffffff?text=Cleaning+Services'">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Poop Cooper Cleaning Services</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Professional cleaning services website with Elementor design, service booking system, and customer testimonials.</p>
+                    <a href="https://www.behance.net/gallery/227286913/Poop-Cooper-Website-Cleaning-Services-Elementor" target="_blank" 
+                       class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-700 font-medium text-sm">
+                        View Project
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="text-center mt-12">
@@ -957,64 +1025,9 @@
             }
         }
 
-        // Load Static Behance Projects
-        function loadBehanceProjects() {
-            const container = document.getElementById('behance-projects-container');
-            if (!container) return;
-
-            // Static project data for your three Behance projects
-            const projects = [
-                {
-                    title: "GoHighLevel Webinar Funnel",
-                    link: "https://www.behance.net/gallery/230623757/GOHIGHLEVEL-WEBINAR-FUNNEL",
-                    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/96a5b4230623757.65f4cd8783271.jpg",
-                    description: "Complete webinar funnel built on GoHighLevel platform with automated sequences"
-                },
-                {
-                    title: "Restaurant Website Elementor",
-                    link: "https://www.behance.net/gallery/227295199/RESTAURANT-WEBSITE-ELEMENTOR",
-                    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/024b5b227295199.65f4cd877f14c.jpg",
-                    description: "Modern restaurant website design built with WordPress and Elementor"
-                },
-                {
-                    title: "Poop Cooper Cleaning Services",
-                    link: "https://www.behance.net/gallery/227286913/Poop-Cooper-Website-Cleaning-Services-Elementor",
-                    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/49f0f9227286913.65f4cd8774c41.jpg",
-                    description: "Professional cleaning services website with Elementor design"
-                }
-            ];
-
-            let projectsHTML = '';
-            
-            projects.forEach(project => {
-                projectsHTML += `
-                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <img src="${project.image}" 
-                         alt="${project.title}" 
-                         class="w-full h-48 object-cover"
-                         onerror="this.src='https://via.placeholder.com/400x250/3d83fc/ffffff?text=Project+Image'">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">${project.title}</h3>
-                        <p class="text-gray-600 mb-4 text-sm">${project.description}</p>
-                        <a href="${project.link}" target="_blank" 
-                           class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-700 font-medium text-sm">
-                            View Project
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                `;
-            });
-
-            container.innerHTML = projectsHTML;
-        }
-
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-            loadBehanceProjects(); // This will load your projects
             
             // Contact form handling
             const contactForm = document.getElementById('contact-form');
