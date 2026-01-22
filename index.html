@@ -899,123 +899,131 @@
         // Mobile menu
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
-                    }
-        
-// Check if the page was just loaded after form submission
-window.addEventListener('load', function() {
-    // Check if we're at the contact section (redirected from FormSubmit)
-    if (window.location.hash === '#contact') {
-        // Check session storage to see if form was just submitted
-        if (sessionStorage.getItem('formSubmitted') === 'true') {
-            showThankYouMessage();
-            // Clear the flag
-            sessionStorage.removeItem('formSubmitted');
         }
-    }
-});
-
-// Intercept form submission to set a flag
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function() {
-            // Set flag in session storage before form submits
-            sessionStorage.setItem('formSubmitted', 'true');
+        
+        // Check if the page was just loaded after form submission
+        window.addEventListener('load', function() {
+            // Check if we're at the contact section (redirected from FormSubmit)
+            if (window.location.hash === '#contact') {
+                // Check session storage to see if form was just submitted
+                if (sessionStorage.getItem('formSubmitted') === 'true') {
+                    showThankYouMessage();
+                    // Clear the flag
+                    sessionStorage.removeItem('formSubmitted');
+                }
+            }
         });
-    }
-});
 
-// Show thank you message
-function showThankYouMessage() {
-    const form = document.getElementById('contact-form');
-    const thankYou = document.getElementById('thank-you-message');
-    
-    if (form && thankYou) {
-        form.style.display = 'none';
-        thankYou.style.display = 'block';
-        thankYou.classList.remove('hidden');
-        
-        // Scroll to contact section smoothly
-        setTimeout(function() {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
-    }
-}
+        // Intercept form submission to set a flag
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function() {
+                    // Set flag in session storage before form submits
+                    sessionStorage.setItem('formSubmitted', 'true');
+                });
+            }
+        });
 
-// Reset form to send another message
-function resetForm() {
-    const form = document.getElementById('contact-form');
-    const thankYou = document.getElementById('thank-you-message');
-    
-    if (form && thankYou) {
-        form.style.display = 'block';
-        form.classList.remove('hidden');
-        thankYou.style.display = 'none';
-        thankYou.classList.add('hidden');
-        form.reset();
-    }
-}
-
-// Load Static Behance Projects
-function loadBehanceProjects() {
-    const container = document.getElementById('behance-projects-container');
-    if (!container) return;
-
-    // Static project data for your three Behance projects
-    const projects = [
-        {
-            title: "GoHighLevel Webinar Funnel",
-            link: "https://www.behance.net/gallery/230623757/GOHIGHLEVEL-WEBINAR-FUNNEL",
-            image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/96a5b4230623757.65f4cd8783271.jpg",
-            description: "Complete webinar funnel built on GoHighLevel platform with automated sequences"
-        },
-        {
-            title: "Restaurant Website Elementor",
-            link: "https://www.behance.net/gallery/227295199/RESTAURANT-WEBSITE-ELEMENTOR",
-            image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/024b5b227295199.65f4cd877f14c.jpg",
-            description: "Modern restaurant website design built with WordPress and Elementor"
-        },
-        {
-            title: "Poop Cooper Cleaning Services",
-            link: "https://www.behance.net/gallery/227286913/Poop-Cooper-Website-Cleaning-Services-Elementor",
-            image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/49f0f9227286913.65f4cd8774c41.jpg",
-            description: "Professional cleaning services website with Elementor design"
+        // Show thank you message
+        function showThankYouMessage() {
+            const form = document.getElementById('contact-form');
+            const thankYou = document.getElementById('thank-you-message');
+            
+            if (form && thankYou) {
+                form.style.display = 'none';
+                thankYou.style.display = 'block';
+                thankYou.classList.remove('hidden');
+                
+                // Scroll to contact section smoothly
+                setTimeout(function() {
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
         }
-    ];
 
-    let projectsHTML = '';
-    
-    projects.forEach(project => {
-        projectsHTML += `
-        <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
-            <img src="${project.image}" 
-                 alt="${project.title}" 
-                 class="w-full h-48 object-cover"
-                 onerror="this.src='https://via.placeholder.com/400x250/3d83fc/ffffff?text=Project+Image'">
-            <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">${project.title}</h3>
-                <p class="text-gray-600 mb-4 text-sm">${project.description}</p>
-                <a href="${project.link}" target="_blank" 
-                   class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-700 font-medium text-sm">
-                    View Project
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        `;
-    });
+        // Reset form to send another message
+        function resetForm() {
+            const form = document.getElementById('contact-form');
+            const thankYou = document.getElementById('thank-you-message');
+            
+            if (form && thankYou) {
+                form.style.display = 'block';
+                form.classList.remove('hidden');
+                thankYou.style.display = 'none';
+                thankYou.classList.add('hidden');
+                form.reset();
+            }
+        }
 
-    container.innerHTML = projectsHTML;
-}
+        // Load Static Behance Projects
+        function loadBehanceProjects() {
+            const container = document.getElementById('behance-projects-container');
+            if (!container) return;
 
-        // Initialize
-        createParticles();
+            // Static project data for your three Behance projects
+            const projects = [
+                {
+                    title: "GoHighLevel Webinar Funnel",
+                    link: "https://www.behance.net/gallery/230623757/GOHIGHLEVEL-WEBINAR-FUNNEL",
+                    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/96a5b4230623757.65f4cd8783271.jpg",
+                    description: "Complete webinar funnel built on GoHighLevel platform with automated sequences"
+                },
+                {
+                    title: "Restaurant Website Elementor",
+                    link: "https://www.behance.net/gallery/227295199/RESTAURANT-WEBSITE-ELEMENTOR",
+                    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/024b5b227295199.65f4cd877f14c.jpg",
+                    description: "Modern restaurant website design built with WordPress and Elementor"
+                },
+                {
+                    title: "Poop Cooper Cleaning Services",
+                    link: "https://www.behance.net/gallery/227286913/Poop-Cooper-Website-Cleaning-Services-Elementor",
+                    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/49f0f9227286913.65f4cd8774c41.jpg",
+                    description: "Professional cleaning services website with Elementor design"
+                }
+            ];
+
+            let projectsHTML = '';
+            
+            projects.forEach(project => {
+                projectsHTML += `
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="${project.image}" 
+                         alt="${project.title}" 
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='https://via.placeholder.com/400x250/3d83fc/ffffff?text=Project+Image'">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">${project.title}</h3>
+                        <p class="text-gray-600 mb-4 text-sm">${project.description}</p>
+                        <a href="${project.link}" target="_blank" 
+                           class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-700 font-medium text-sm">
+                            View Project
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                `;
+            });
+
+            container.innerHTML = projectsHTML;
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            loadBehanceProjects(); // This will load your projects
+            
+            // Contact form handling
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function() {
+                    sessionStorage.setItem('formSubmitted', 'true');
+                });
+            }
+        });
     </script>
-
-
-    
 </body>
 </html>
