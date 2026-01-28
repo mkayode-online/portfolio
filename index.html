@@ -290,6 +290,61 @@
             object-fit: cover;
             background-color: #f3f4f6;
         }
+
+        /* Add to existing CSS */
+/* Animated job title */
+#animated-job-title {
+    position: relative;
+    display: inline-block;
+    min-width: 300px;
+}
+
+.job-title-item {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.job-title-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Blinking cursor */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: #3d83fc;
+    margin-left: 4px;
+    animation: blink 0.7s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Typing animation for description */
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #3d83fc;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #3d83fc; }
+}
         
     </style>
 </head>
@@ -335,65 +390,73 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="animate-slideInLeft">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    Hi, I'm <span class="gradient-text">Kayode Ajibola</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-8">
-                    Creative Web & Graphics Designer
-                </p>
-                <p class="text-lg text-gray-600 mb-8">
-                    Transforming ideas into stunning digital experiences through design, code, and automation.
-                </p>
-                <div class="flex gap-4 mb-8">
-                    <a href="#contact" class="gradient-bg text-white px-8 py-3 rounded-full font-semibold hover:shadow-2xl transition transform hover:scale-105">
-                        Let's Talk
-                    </a>
-                    <a href="#projects" class="border-2 border-blue-500 text-blue-500 px-8 py-3 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition">
-                        View Work
-                    </a>
+<section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <div class="animate-slideInLeft">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                Hi, I'm <span class="gradient-text">Kayode Ajibola</span>
+            </h1>
+            
+            <!-- Animated Text Container -->
+            <div class="text-xl md:text-2xl text-gray-600 mb-8 min-h-[3rem]">
+                <div id="animated-job-title" class="inline-flex items-center">
+                    <span class="gradient-text font-semibold">WordPress Website Designer</span>
                 </div>
-                <div class="flex gap-6">
-    <a href="https://www.linkedin.com/in/kayode-ajibola/" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110" title="LinkedIn Profile">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-        </svg>
-    </a>
-    <a href="https://www.behance.net/mkayode_online" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110" title="Behance Portfolio">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-        </svg>
-    </a>
-    <!-- Resume Download Link -->
-    <a href="Kayode Ajibola Resume (1).pdf" 
-       download="Kayode_Ajibola_Resume.pdf" 
-       class="text-gray-600 hover:text-red-500 transition transform hover:scale-110"
-       title="Download Resume (PDF)">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-    </a>
-</div>
             </div>
-            <div class="animate-slideInRight relative">
-                <div class="relative z-10 animate-float">
-                    <div class="w-full aspect-square max-w-md mx-auto relative">
-                        <!-- Profile Image Container -->
-                        <div class="absolute inset-0 gradient-bg rounded-full blur-2xl opacity-30"></div>
-                        <img src="1000173141.png" alt="Kayode Ajibola - Professional Portrait" class="relative z-10 w-full h-full object-cover rounded-full shadow-2xl border-8 border-white" style="object-position: center top;">
-                        <!-- Fallback if image doesn't load -->
-                        <div class="absolute inset-0 gradient-bg rounded-full flex items-center justify-center text-white text-8xl font-bold" style="z-index: 5;">
-                            <span id="fallback-text">KA</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute top-10 right-10 w-32 h-32 bg-orange-500 rounded-full opacity-20 animate-float" style="animation-delay: 0.5s;"></div>
-                <div class="absolute bottom-10 left-10 w-24 h-24 bg-blue-500 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
+            
+            <p class="text-lg text-gray-600 mb-8">
+                <span class="typing-text">Transforming ideas into stunning digital experiences through design, code, and automation.</span>
+            </p>
+            
+            <div class="flex gap-4 mb-8">
+                <a href="#contact" class="gradient-bg text-white px-8 py-3 rounded-full font-semibold hover:shadow-2xl transition transform hover:scale-105">
+                    Let's Talk
+                </a>
+                <a href="#projects" class="border-2 border-blue-500 text-blue-500 px-8 py-3 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition">
+                    View Work
+                </a>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="https://www.linkedin.com/in/kayode-ajibola/" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110" title="LinkedIn Profile">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://www.behance.net/mkayode_online" target="_blank" class="text-gray-600 hover:text-blue-500 transition transform hover:scale-110" title="Behance Portfolio">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                    </svg>
+                </a>
+                <!-- Resume Download Link -->
+                <a href="Kayode Ajibola Resume (1).pdf" 
+                   download="Kayode_Ajibola_Resume.pdf" 
+                   class="text-gray-600 hover:text-red-500 transition transform hover:scale-110"
+                   title="Download Resume (PDF)">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </a>
             </div>
         </div>
-    </section>
+        
+        <div class="animate-slideInRight relative">
+            <div class="relative z-10 animate-float">
+                <div class="w-full aspect-square max-w-md mx-auto relative">
+                    <!-- Profile Image Container -->
+                    <div class="absolute inset-0 gradient-bg rounded-full blur-2xl opacity-30"></div>
+                    <img src="1000173141.png" alt="Kayode Ajibola - Professional Portrait" class="relative z-10 w-full h-full object-cover rounded-full shadow-2xl border-8 border-white" style="object-position: center top;">
+                    <!-- Fallback if image doesn't load -->
+                    <div class="absolute inset-0 gradient-bg rounded-full flex items-center justify-center text-white text-8xl font-bold" style="z-index: 5;">
+                        <span id="fallback-text">KA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-10 right-10 w-32 h-32 bg-orange-500 rounded-full opacity-20 animate-float" style="animation-delay: 0.5s;"></div>
+            <div class="absolute bottom-10 left-10 w-24 h-24 bg-blue-500 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
+        </div>
+    </div>
+</section>
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-50 scroll-section">
@@ -906,6 +969,7 @@
         </div>
     </footer>
 
+    
     <script>
         // Image loading handler
         const profileImg = document.querySelector('img[alt*="Kayode Ajibola"]');
@@ -1026,6 +1090,64 @@
             }
         }
 
+        // Fast rotating job titles (0.5 seconds each)
+const jobTitles = [
+    "WordPress Website Designer",
+    "GoHighLevel Automation",
+    "Wix Website Designer", 
+    "Chatbot Automation Expert"
+];
+
+let currentTitleIndex = 0;
+const jobTitleElement = document.getElementById('animated-job-title');
+
+function rotateJobTitlesFast() {
+    // Remove active class from current
+    jobTitleElement.classList.remove('active');
+    
+    setTimeout(() => {
+        // Update text
+        currentTitleIndex = (currentTitleIndex + 1) % jobTitles.length;
+        jobTitleElement.innerHTML = `<span class="gradient-text font-semibold">${jobTitles[currentTitleIndex]}</span><span class="cursor"></span>`;
+        
+        // Add active class with slight delay for smooth transition
+        setTimeout(() => {
+            jobTitleElement.classList.add('active');
+        }, 10);
+        
+    }, 150); // Small delay before changing text
+}
+
+// Start rotating every 0.5 seconds
+const jobTitleInterval = setInterval(rotateJobTitlesFast, 500);
+
+// Initialize with first title
+if (jobTitleElement) {
+    jobTitleElement.innerHTML = `<span class="gradient-text font-semibold">${jobTitles[0]}</span><span class="cursor"></span>`;
+    jobTitleElement.classList.add('active');
+}
+
+// Pause animation on hover
+if (jobTitleElement) {
+    jobTitleElement.addEventListener('mouseenter', () => {
+        clearInterval(jobTitleInterval);
+        // Add pause indicator
+        const cursor = jobTitleElement.querySelector('.cursor');
+        if (cursor) cursor.style.animation = 'none';
+    });
+    
+    jobTitleElement.addEventListener('mouseleave', () => {
+        // Restart animation
+        setTimeout(() => {
+            const newInterval = setInterval(rotateJobTitlesFast, 500);
+            // Store interval reference if needed
+            window.jobTitleInterval = newInterval;
+            
+            const cursor = jobTitleElement.querySelector('.cursor');
+            if (cursor) cursor.style.animation = 'blink 0.7s infinite';
+        }, 300);
+    });
+}
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
