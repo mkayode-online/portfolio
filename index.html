@@ -1228,7 +1228,7 @@ function rotateJobTitlesFast() {
 }
 
 // Start rotating every 0.5 seconds
-const jobTitleInterval = setInterval(rotateJobTitlesFast, 3000);
+const jobTitleInterval = setInterval(rotateJobTitlesFast, 5000);
 
 // Initialize with first title
 if (jobTitleElement) {
@@ -1248,12 +1248,12 @@ if (jobTitleElement) {
     jobTitleElement.addEventListener('mouseleave', () => {
         // Restart animation
         setTimeout(() => {
-            const newInterval = setInterval(rotateJobTitlesFast, 500);
+            const newInterval = setInterval(rotateJobTitlesFast, 900);
             // Store interval reference if needed
             window.jobTitleInterval = newInterval;
             
             const cursor = jobTitleElement.querySelector('.cursor');
-            if (cursor) cursor.style.animation = 'blink 0.7s infinite';
+            if (cursor) cursor.style.animation = 'blink 3.0s infinite';
         }, 300);
     });
 }
